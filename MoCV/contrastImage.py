@@ -1,6 +1,6 @@
 #contrastImage.py
 
-from . import Histogram
+from . import histogram
 import cv2
 
 """
@@ -13,13 +13,19 @@ upcontrastImage(image):
 	"""
 	Perform Histogram equalization to strech images in order to increase contrast
 	"""
+	#compute hist of each channel and equalize
+	equalized_hists = []
+	
+	for channel_idx in range(hists.shape[2]):
+		#calculate histogram
+		hist, pixels = histogram.calcHist(hists[:,:,channel_idx])
+		#equalize histogram
+		equalized_hists.append(histogram.equalizeHist(hist, pixels))
 
-	#computer histogram
-	hist = cv2.calcHist(images = [image], channels = [0], mask = None, histSize = [256], ranges = [0, 256])	
+	#contrsuct new channel
+	for channel in equalized_hists:
+		for color, pixels in channel.items():
+			for pixel in pixels:
+				image[pixel.x, pixel.y, channel] = color	
 
-	#equalize hist
-	equalized_hist = Histogram.equalizeHist(hist)
-
-	#convert equalized_hist to image
-
-	return res_image 
+	return image
