@@ -7,8 +7,8 @@
 #import dependencies
 import matplotlib.pyplot as plt
 import numpy
+import math
 from . import pixel
-
 
 """
 equalizeHist - function to equalize histogram that adds more contrast to images
@@ -31,7 +31,7 @@ def equalizeHist(hist, pixels):
 		else:
 			prev = accu_hist[idx - 1]
 		accu_hist[idx] += prev	
-		new_color = -calcEqualizedColor(accu_hist[idx], prev, colors, pixel_num)
+		new_color = _calcEqualizedColor(accu_hist[idx], prev, colors, pixel_num)
 
 		if hist[idx] > 0:
 			new_hist[new_color] = pixels[idx] 
@@ -43,19 +43,17 @@ Paremeters:
 	arr	I/P	channel of an image need computing histogram
 	res	O/P	[colors, arrays of Pixel objects, arrays of the number of colors]
 """
-def calcHis(arr):
+def calcHist(arr):
 	keys = range(0, 256)
 	hist = dict.fromkeys(keys, 0)
-	pixels = dict.fromkeys(keys,0)
-
-	
+	pixels = dict.fromkeys(keys, [])
 
 	#scan thru arr to find compute histogram
-	for row in range(arr):
-		for col in range(row):
+	for row in range(arr.shape[0]):
+		for col in range(arr.shape[1]):
 			pix = arr[row, col]
-			pixels[pix] += 1
-			hist[pix].append(pixel.Pixel(row, col)) 
+			hist[pix] += 1
+			pixels[pix].append(pixel.Pixel(row, col)) 
 
 	return (hist, pixels)
 
@@ -69,5 +67,5 @@ Parameters:
 	pixel_num	I/P	total number of pixels (not 0)
 	res		O/P	the new num of pixels in the corresponding color
 """
-def _calcEqualizedColor(color, prev_color, colors = 256, pixel_num): 
-	return floor((color + prev_color) * colors / (2 * pixel_num)) 
+def _calcEqualizedColor(color, prev_color, colors, pixel_num): 
+	return math.floor((color + prev_color) * colors / (2 * pixel_num)) 

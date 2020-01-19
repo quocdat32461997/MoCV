@@ -9,16 +9,16 @@ Parameters:
 	image		I/P	image need increasing contrast
 	res_image	O/P	image after being increased contrast
 """
-upcontrastImage(image):
+def upcontrastImage(image):
 	"""
 	Perform Histogram equalization to strech images in order to increase contrast
 	"""
 	#compute hist of each channel and equalize
 	equalized_hists = []
 	
-	for channel_idx in range(hists.shape[2]):
+	for channel_idx in range(image.shape[2]):
 		#calculate histogram
-		hist, pixels = histogram.calcHist(hists[:,:,channel_idx])
+		hist, pixels = histogram.calcHist(image[:,:,channel_idx])
 		#equalize histogram
 		equalized_hists.append(histogram.equalizeHist(hist, pixels))
 
