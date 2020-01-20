@@ -1,5 +1,6 @@
-_pycache_/*
+__pycache__/
 *.egg
 *.egg-info
-dist/*
-build/*
+dist/
+build/
+MoCV/__pycache__/

@@ -3,5 +3,5 @@
 print("Importing MoCV")
 
 #import all modules of MoCV
-__all__ = ['histogram', 'contrastImage', 'pixel']
+__all__ = ['contrastImage']
 from . import *

@@ -5,7 +5,7 @@ with open("README.md") as fh:
 	
 setuptools.setup(
 	name = "MoCV",
-	version = "0.0.1",
+	version = "1.0.2",
 	author = "datqngo",
 	author_email = "quocdat32461997@yahoo.com",
 	description = "List and details of Computer Vision algorithms",
