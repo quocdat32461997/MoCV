@@ -13,5 +13,6 @@ cv2.imshow('image',img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
+#Histogram Equalizaiton to increase image contrast
 enhanced_image = MoCV.contrastImage.upcontrastImage(img)
 cv2.imwrite("enhacned_image.png", enhanced_image)
