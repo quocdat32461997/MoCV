@@ -1,0 +1,39 @@
+#histogram.py
+
+#import dependencies
+import numpy as np
+import math
+
+__all__ = ['eq_hist']
+
+"""
+eq_hist - function to equalize histogram
+Parameters:
+	hist		I/P	histogram of image
+	colors		I/P	possible colors of image
+	img_size	I/P	size of image
+	equalized_hist	O/P	equalized histogram
+"""
+def eq_hist(hist, colors, img_size):
+	hist = hist * colors / (2 * img_size)
+	cum_hist = hist.cumsum() #Cummulative histogram
+	equalized_hist = np.floor(cum_hist)
+
+	return equalized_hist
+	
+"""
+linear_scale - function to scale images linearly
+
+"""
+def linear_scale(image):
+	
+
+"""
+histogram - function to comptue histogram of an image
+Parameters:
+	image	I/P	image input
+	hist	O/P	computed histogram by numpy
+"""
+def histogram(image):
+	#hist, _ = np.histogram(image, bins = 256, range = (0, 256))	
+	return hist

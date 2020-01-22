@@ -1,8 +1,11 @@
 #contrastImage.py
 
+#import dependencies
 import numpy as np
-import math
 import cv2
+from . import histogram
+
+__all__ = ['upcontrastImage']
 
 """
 upcontrastImage - function to increase contrast of an image
@@ -16,21 +19,21 @@ def upcontrastImage(image):
 	"""
 
 	#compute histogram
-	histo, bins  = np.histogram(image.flatten(), bins = 256, range = (0, 255))
+	#hist, bins  = np.histogram(image.flatten(), bins = 256, range = (0, 255))
+	hist = histogram.histogram(image)
 
 	#equalize histogram
-	k = 256
-	n = image.size
+	colors = 256
 
-	histo = histo * k / (2 * n) 
-	cum_histo = histo.cumsum() #Cumulative Histo	
-	cums_histo = np.floor(cum_histo)
+	stretched_hist = histogram.eq_hist(hist, colors, image.size)
 
 	#enhance image contrast
 	enhanced_image = np.zeros(shape = image.shape)
 
-	for row in range(image.shape[0]):
-		for col in range(image.shape[1]):
-			enhanced_image[row, col] = cum_histo[image[row, col]]
+	height = len(image)
+	width = len(image[0])	
+	for row in range(height):
+		for col in range(width):
+			enhanced_image[row, col] = stretched_hist[image[row, col]]
 
 	return enhanced_image
