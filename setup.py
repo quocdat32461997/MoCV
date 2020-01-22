@@ -19,5 +19,6 @@ setuptools.setup(
 		"Operating Sytem :: OS Independent"],
 	install_requires = [
 		"numpy",
-		"matplotlib"],
+		"matplotlib",
+		"cv2"],
 )
