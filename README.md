@@ -5,4 +5,3 @@ MoCV ("Mo" is "Open" in Vietnamese) is created to provide tutorials of Computer 
 List of algorithms:
 	1. Histogram Equalization for enhancing image contrast
 	2. Linear Scaling 
-	3. Will be updated soon.
