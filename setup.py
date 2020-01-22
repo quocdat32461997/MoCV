@@ -20,5 +20,5 @@ setuptools.setup(
 	install_requires = [
 		"numpy",
 		"matplotlib",
-		"cv2"],
+		"opencv-python"],
 )
