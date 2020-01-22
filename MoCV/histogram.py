@@ -3,6 +3,7 @@
 #import dependencies
 import numpy as np
 import math
+__all__ = ['eq_hist', 'histogram', 'linear_scale_hist']
 
 """
 eq_hist - function to equalize histogram
@@ -20,7 +21,7 @@ def eq_hist(hist, colors, img_size):
 	return equalized_hist
 	
 """
-linear_scale - function to scale images linearly
+linear_scale_hist - function to scale images linearly
 
 """
 def linear_scale_hist(hist, A = 0, B = 255):
