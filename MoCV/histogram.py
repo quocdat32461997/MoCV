@@ -3,7 +3,7 @@
 #import dependencies
 import numpy as np
 import math
-__all__ = ['eq_hist', 'histogram', 'linear_scale_hist']
+__all__ = ['eq_hist', 'histogram']
 
 """
 eq_hist - function to equalize histogram
@@ -19,28 +19,8 @@ def eq_hist(hist, colors, img_size):
 	equalized_hist = np.floor(cum_hist)
 
 	return equalized_hist
-	
-"""
-linear_scale_hist - function to scale images linearly
 
-"""
-def linear_scale_hist(hist, A = 0, B = 255):
-	#by default, the two ends of the new range is A = 0, B = 255
-	#get two ends of the current range is a, b that b > a
-	old_range = np.where(hist > 0)
-	a = np.min(old_range)
-	b = np.max(old_range)
-
-	ba = b - a
-	BA = B - A	
-
-	new_hist = np.array([0] * 256) 
-	for idx in np.nditer(old_range):
-		new_idx = np.int((idx - a) * BA / ba + A)
-		new_hist[new_idx] = hist[idx] 
-	return new_hist
-
-"""
+"""	
 histogram - function to comptue histogram of an image
 Parameters:
 	img_channel	I/P	image channel input in default/numpy array
