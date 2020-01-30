@@ -31,7 +31,7 @@ def optimal_thresholding(image):
 
 	for row in range(image.shape[0]):
 		for col in range(image.shape[1]):
-			if image[row, col] < optimal_thd:
+			if image[row, col] > optimal_thd:
 				front[row, col] = image[row, col]
 			else:
 				back[row, col] = image[row, col]
