@@ -6,4 +6,5 @@ List of Computer Vision algorithms:
 1. Histogram - compute image histogram
 2. Histogram Equalization - equalize image histogram to enhance image contrast
 3. Linear Scale - lienarly scale image histogram
-4. Will be updated soon
+4. Segmentation by Optimal Thresholding
+5. Will be updated soon
