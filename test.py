@@ -63,4 +63,4 @@ test - function test all functions
 Parameters:
 	mode	I/P	index of CV algorithsm for testing. Look at README for indices of algorithms. -1 for all algorithms
 """
-_segment_image_test("./tests/images/segmentation", "original_img.jpg")
+_segment_image_test("./tests/images/contrast", "low_contrast_image.png")
