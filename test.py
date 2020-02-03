@@ -80,7 +80,7 @@ def _shift_image_test(test_folder_path, test_img_name, alpha, beta):
 	img = cv2.imread(os.path.join(test_folder_path, test_img_name), 0)
 
 	#shift images
-	shifted_img = MoCV.image_function.shift(img, alpha, beta) 
+	shifted_img = MoCV.img_func.shift(img, alpha, beta) 
 	
 	#write shifted image
 	shifted_img_path = os.path.join(test_folder_path, "shifted_img.png")
