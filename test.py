@@ -89,6 +89,26 @@ def _shift_image_test(test_folder_path, test_img_name, alpha, beta):
 	""" end of _shift_image_test """
 
 """
+_scale_nn_test - function to scale images by nearest neighbor method
+Parameters:
+	test_folder_path        I/P     path to test folder for image segmentation
+	test_img_name           I/P     name of test image
+"""
+def _scale_nn_test(test_folder_path, test_img_name, w_ratio, h_ratio = 0):
+	print("Testing scaling by nearest neighbor")
+	
+	#read image
+	img = cv2.imread(os.path.join(test_folder_path, test_img_name), 0)
+	
+	#scale image
+	scaled_img = MoCV.img_func.scale_nn(img, w_ratio, h_ratio) 
+
+	#write scaled image
+	scaled_img_path = os.path.join(test_folder_path, "scaled_nn_img.png")
+	cv2.imwrite(scaled_img_path, scaled_img)
+	"""		end of scaleing image by nearest neighbor		"""
+
+"""
 test - function test all functions
 Parameters:
 	mode	I/P	index of CV algorithsm for testing. Look at README for indices of algorithms. -1 for all algorithms
@@ -96,14 +116,28 @@ Parameters:
 """
 def test(args):
 	mode = int(args[0]) #get mode
-	if mode == 1:
+	if mode == 1: #testing enhancing image contrast
 		_enhance_image_test("./tests/images/contrast", "example_img.png") 
-	elif mode == 2:
+
+	elif mode == 2: #testing segmenting images
 		_segment_image_test("./tests/images/segmentation", "example_img.jpg")
-	elif mode == 3:
+
+	elif mode == 3: #testing shifting images
 		alpha, beta = [int(x) for x in args[1:]] 
 		_shift_image_test("./tests/images/general", "example_img.png", alpha, beta)
+
+	elif mode == 4: #testing scaling iamges
+		assert(len(args[1]) > 0), "Missing scaling ratio" #checking scaling ratio exist
+		h_ratio = w_ratio = 0
+		if len(args[1:]) > 1:
+			h_ratio, w_ratio = [int(x) for x in args[1:]]
+		else:
+			h_ratio = int(args[1]) 
+		_scale_nn_test("./tests/images/general", "example_img.png", h_ratio, w_ratio)
+
 	else:
 		print("Wrong test")
+	"""		end of test		"""
+
 if __name__ == "__main__":
 	test(sys.argv[1:])
