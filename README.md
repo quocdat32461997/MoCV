@@ -7,7 +7,8 @@ List of Computer Vision algorithms:
 2. Histogram Equalization - equalize image histogram to enhance image contrast
 3. Linear Scale - lienarly scale image histogram
 4. Segmentation by Optimal Thresholding
-5. Will be updated soon
+6. Scaling by Nearest Neighbor
+7. Will be updated soon
 
 ### Tutorials for testing
 - Install MoCV: pip3 install MoCV
