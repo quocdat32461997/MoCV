@@ -25,7 +25,7 @@ def _enhance_image_test(test_folder_path, test_img_name):
 	#cv2.destroyAllWindows()
 
 	#Histogram Equalizaiton to increase image contrast
-	enhanced_img = MoCV.contrastImage.upcontrastImage(img)
+	enhanced_img = MoCV.contrast.upcontrastImage(img)
 
 	#write image
 	enhanced_img_path = os.path.join(test_folder_path, "enhanced_image.png")
