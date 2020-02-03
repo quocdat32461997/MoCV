@@ -4,6 +4,4 @@ __pycache__/
 dist/
 build/
 **/__pycache__/
-*.png
-./*.png
 api_token.rtf
