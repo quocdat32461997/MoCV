@@ -14,9 +14,9 @@ setuptools.setup(
 	url = "https://github.com/quocdat32461997/MoCV",
 	packages = setuptools.find_packages(),
 	classifiers = [
-		"Programming language :: Python :: 3",
-		"License :: OSI Approved :: MIT License",
-		"Operating Sytem :: OS Independent"],
+		"Programming Language :: Python :: 3",
+        	"License :: OSI Approved :: MIT License",
+        	"Operating System :: OS Independent",],
 	install_requires = [
 		"numpy",
 		"matplotlib",
