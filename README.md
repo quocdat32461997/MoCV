@@ -10,6 +10,7 @@ List of Computer Vision algorithms:
 6. Scaling by Nearest Neighbor
 7. Will be updated soon
 
+
 ### Tutorials for testing
 - Install MoCV: pip3 install MoCV
 - Image Contrast Enhancement: python3 test.py 1
