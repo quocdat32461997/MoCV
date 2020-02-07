@@ -93,20 +93,44 @@ _scale_nn_test - function to scale images by nearest neighbor method
 Parameters:
 	test_folder_path        I/P     path to test folder for image segmentation
 	test_img_name           I/P     name of test image
+	h_ratio			I/P	scaling ratio for height
+	w_ratio			I/P	scaling ratio for width
 """
-def _scale_nn_test(test_folder_path, test_img_name, w_ratio, h_ratio = 0):
+def _scale_nn_test(test_folder_path, test_img_name, h_ratio, w_ratio = 0):
 	print("Testing scaling by nearest neighbor")
 	
 	#read image
 	img = cv2.imread(os.path.join(test_folder_path, test_img_name), 0)
 	
 	#scale image
-	scaled_img = MoCV.img_func.scale_nn(img, w_ratio, h_ratio) 
+	scaled_img = MoCV.img_func.scale_nn(img, h_ratio, w_ratio) 
 
 	#write scaled image
 	scaled_img_path = os.path.join(test_folder_path, "scaled_nn_img.png")
 	cv2.imwrite(scaled_img_path, scaled_img)
 	"""		end of scaleing image by nearest neighbor		"""
+
+"""
+_scale_lp_test - function to scale images by nearest neighbor method
+Parameters:
+	test_folder_path        I/P     path to test folder for image segmentation
+        test_img_name           I/P     name of test image
+        h_ratio                 I/P     scaling ratio for height
+        w_ratio                 I/P     scaling ratio for width
+"""
+def _scale_lp_test(test_folder_path, test_img_name, h_ratio, w_ratio = 0):
+        print("Testing scaling by bilinear interpolation")
+
+        #read image
+        img = cv2.imread(os.path.join(test_folder_path, test_img_name), 0)
+
+        #scale image
+        scaled_img = MoCV.img_func.scale_lp(img, h_ratio, w_ratio)
+
+        #write scaled image
+        scaled_img_path = os.path.join(test_folder_path, "scaled_lp_img.png")
+        cv2.imwrite(scaled_img_path, scaled_img)
+        """             end of scaleing image by bilinear interpolation              """
 
 """
 test - function test all functions
@@ -133,11 +157,20 @@ def test(args):
 			h_ratio, w_ratio = [int(x) for x in args[1:]]
 		else:
 			h_ratio = int(args[1]) 
-		_scale_nn_test("./tests/images/general", "example_img.png", h_ratio, w_ratio)
+		_scale_nn_test("./tests/images/general", "example_img2.png", h_ratio, w_ratio)
+	elif mode == 5: #testing scaling iamges
+                assert(len(args[1]) > 0), "Missing scaling ratio" #checking scaling ratio exist
+                h_ratio = w_ratio = 0
+                if len(args[1:]) > 1:
+                        h_ratio, w_ratio = [int(x) for x in args[1:]]
+                else:
+                        h_ratio = int(args[1])
+                _scale_lp_test("./tests/images/general", "example_img2.png", h_ratio, w_ratio)
 
 	else:
 		print("Wrong test")
 	"""		end of test		"""
+
 
 if __name__ == "__main__":
 	test(sys.argv[1:])
