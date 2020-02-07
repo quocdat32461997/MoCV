@@ -93,15 +93,17 @@ _scale_nn_test - function to scale images by nearest neighbor method
 Parameters:
 	test_folder_path        I/P     path to test folder for image segmentation
 	test_img_name           I/P     name of test image
+	h_ratio			I/P	scaling ratio for height
+	w_ratio			I/P	scaling ratio for width
 """
-def _scale_nn_test(test_folder_path, test_img_name, w_ratio, h_ratio = 0):
+def _scale_nn_test(test_folder_path, test_img_name, h_ratio, w_ratio = 0):
 	print("Testing scaling by nearest neighbor")
 	
 	#read image
 	img = cv2.imread(os.path.join(test_folder_path, test_img_name), 0)
 	
 	#scale image
-	scaled_img = MoCV.img_func.scale_nn(img, w_ratio, h_ratio) 
+	scaled_img = MoCV.img_func.scale_nn(img, h_ratio, w_ratio) 
 
 	#write scaled image
 	scaled_img_path = os.path.join(test_folder_path, "scaled_nn_img.png")
@@ -111,17 +113,19 @@ def _scale_nn_test(test_folder_path, test_img_name, w_ratio, h_ratio = 0):
 """
 _scale_lp_test - function to scale images by nearest neighbor method
 Parameters:
-        test_folder_path        I/P     path to test folder for image segmentation
+	test_folder_path        I/P     path to test folder for image segmentation
         test_img_name           I/P     name of test image
+        h_ratio                 I/P     scaling ratio for height
+        w_ratio                 I/P     scaling ratio for width
 """
-def _scale_lp_test(test_folder_path, test_img_name, w_ratio, h_ratio = 0):
+def _scale_lp_test(test_folder_path, test_img_name, h_ratio, w_ratio = 0):
         print("Testing scaling by bilinear interpolation")
 
         #read image
         img = cv2.imread(os.path.join(test_folder_path, test_img_name), 0)
 
         #scale image
-        scaled_img = MoCV.img_func.scale_lp(img, w_ratio, h_ratio)
+        scaled_img = MoCV.img_func.scale_lp(img, h_ratio, w_ratio)
 
         #write scaled image
         scaled_img_path = os.path.join(test_folder_path, "scaled_lp_img.png")
